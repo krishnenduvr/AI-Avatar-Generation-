@@ -67,7 +67,7 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 def extract_text_from_pdf(file):
-    c = PyPDF2.PdfReader(file)
+    c = PdfReader(file)
     text = ""
     for page in c.pages:
         text += page.extract_text()
@@ -213,4 +213,5 @@ elif page == "🚀Avatar":
         else:
             st.error("Wav2Lip failed — see error logs below.")
             st.text(j.stderr)
+
 
