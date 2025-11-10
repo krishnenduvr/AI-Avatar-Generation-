@@ -1,5 +1,6 @@
 import streamlit as st
-import PyPDF2
+# import PyPDF2
+from PyPDF2 import PdfReader
 import docx
 from transformers import pipeline
 from gtts import gTTS
