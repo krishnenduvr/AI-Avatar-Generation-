@@ -12,7 +12,7 @@ from PIL import Image
 
 checkpoint_path = "Wav2Lip/checkpoints/wav2lip_gan.pth"
 gdrive_url = f"https://drive.google.com/uc?id=1Jz_xnBmD7aD3hZAFQz73NTwxZU9fTuRi"
-
+os.makedirs(os.path.dirname(checkpoint_path), exist_ok=True)
 # Download the model checkpoint if not present
 if not os.path.exists(checkpoint_path):
         gdown.download(gdrive_url, checkpoint_path, quiet=False)
@@ -221,6 +221,7 @@ elif page == "🚀Avatar":
         else:
             st.error("Wav2Lip failed — see error logs below.")
             st.text(j.stderr)
+
 
 
 
