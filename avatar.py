@@ -1,5 +1,8 @@
 import streamlit as st
 # import PyPDF2
+import pkg_resources
+installed = [p.project_name.lower() for p in pkg_resources.working_set]
+st.write("Installed packages:", installed)
 from pypdf import PdfReader
 import docx
 from transformers import pipeline
@@ -213,6 +216,7 @@ elif page == "🚀Avatar":
         else:
             st.error("Wav2Lip failed — see error logs below.")
             st.text(j.stderr)
+
 
 
 
