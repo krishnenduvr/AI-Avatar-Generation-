@@ -1,9 +1,6 @@
 import streamlit as st
-# import PyPDF2
-import pkg_resources
-from pypdf import PdfReader
-# import docx
-from docx import Document
+import PyPDF2
+import docx
 from transformers import pipeline
 from gtts import gTTS
 import tempfile
@@ -11,8 +8,6 @@ import os
 import subprocess
 import sys
 from PIL import Image
-installed = [p.project_name.lower() for p in pkg_resources.working_set]
-st.write("Installed packages:", installed)
 st.set_page_config(page_title="WELCOME TO MY AVATAR", layout="wide")
 st.sidebar.title("⚙️ Settings")
 st.sidebar.markdown("### 👤 Customize Your Avatar")
@@ -217,6 +212,7 @@ elif page == "🚀Avatar":
         else:
             st.error("Wav2Lip failed — see error logs below.")
             st.text(j.stderr)
+
 
 
 
