@@ -6,8 +6,19 @@ from gtts import gTTS
 import tempfile
 import os
 import subprocess
+import gdown
 import sys
 from PIL import Image
+
+checkpoint_path = "Wav2Lip/checkpoints/wav2lip_gan.pth"
+file_id = "1Jz_xnBmD7aD3hZAFQz73NTwxZU9fTuRi"
+gdrive_url = f"https://drive.google.com/uc?id=1Jz_xnBmD7aD3hZAFQz73NTwxZU9fTuRi"
+
+# Download the model checkpoint if not present
+if not os.path.exists(checkpoint_path):
+    with st.spinner("🔽 Downloading Wav2Lip model (please wait a moment)..."):
+        gdown.download(gdrive_url, checkpoint_path, quiet=False)
+    st.success("✅ Wav2Lip model downloaded successfully!")
 st.set_page_config(page_title="WELCOME TO MY AVATAR", layout="wide")
 st.sidebar.title("⚙️ Settings")
 st.sidebar.markdown("### 👤 Customize Your Avatar")
@@ -212,6 +223,7 @@ elif page == "🚀Avatar":
         else:
             st.error("Wav2Lip failed — see error logs below.")
             st.text(j.stderr)
+
 
 
 
