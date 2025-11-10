@@ -1,6 +1,6 @@
 import streamlit as st
 # import PyPDF2
-from PyPDF2 import PdfReader
+from pypdf import PdfReader
 import docx
 from transformers import pipeline
 from gtts import gTTS
@@ -213,5 +213,6 @@ elif page == "🚀Avatar":
         else:
             st.error("Wav2Lip failed — see error logs below.")
             st.text(j.stderr)
+
 
 
