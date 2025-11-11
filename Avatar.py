@@ -20,12 +20,7 @@ if not os.path.exists(checkpoint_path):
 st.set_page_config(page_title="WELCOME TO MY AVATAR", layout="wide")
 st.sidebar.title("⚙️ Settings")
 st.sidebar.markdown("### 👤 Customize Your Avatar")
-# page = st.sidebar.radio("", ["🏠Home Page", "🧠About", "📝Summary", "🚀Avatar"])
-page = st.sidebar.radio(
-    "Navigation",   # give a non-empty label
-    ["🏠Home Page", "🧠About", "📝Summary", "🚀Avatar"],
-    label_visibility="hidden"   # hide it from the UI if you don’t want it shown
-)
+page = st.sidebar.radio("", ["🏠Home Page", "🧠About", "📝Summary", "🚀Avatar"])
 r = "#0B132B"
 x = "#E0E0E0"
 st.markdown(
@@ -91,25 +86,10 @@ def extract_text_from_docx(file):
     for para in d.paragraphs:
         text += para.text + '\n'
     return text
-# e = pipeline('summarization')
-# def summarize_text(text, max_length=150, min_length=50):
-#     summary = e(text, max_length=max_length, min_length=min_length, do_sample=False)
-#     return summary[0]['summary_text']
-e = pipeline(
-    "summarization",
-    model="facebook/bart-large-cnn",   # you can swap this for another summarization model
-    revision="main"
-)
-
+e = pipeline('summarization')
 def summarize_text(text, max_length=150, min_length=50):
-    summary = e(
-        text,
-        max_length=max_length,
-        min_length=min_length,
-        do_sample=False
-    )
-    return summary[0]["summary_text"]
-
+    summary = e(text, max_length=max_length, min_length=min_length, do_sample=False)
+    return summary[0]['summary_text']
 def text_to_speech(summary_text):
     f = gTTS(text=summary_text, lang='en')
     temp_audio = tempfile.NamedTemporaryFile(delete=False, suffix='.mp3')
@@ -241,6 +221,7 @@ elif page == "🚀Avatar":
         else:
             st.error("Wav2Lip failed — see error logs below.")
             st.text(j.stderr)
+
 
 
 
