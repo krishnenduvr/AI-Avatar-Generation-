@@ -200,23 +200,24 @@ elif page == "🚀Avatar":
             "--audio", audio_path,
             "--outfile", "outputs/talking.mp4"
         ], shell=True, capture_output=True, text=True)
-        if j.returncode == 0 and os.path.exists("outputs/talking.mp4"):
-            st.header("Avatar")
-            st.markdown("""
-                <style>
-                video {
-                    max-height: 520px !important;   /* reduce video height */
-                    width: auto !important;          /* keep aspect ratio */
-                    border-radius: 12px;
-                    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-                }
-                </style>
-                """, unsafe_allow_html=True)
-            st.video("outputs/talking.mp4")
+       outfile_path = "outputs/talking.mp4"
 
-        else:
-            st.error("Wav2Lip failed — see error logs below.")
-            st.text(j.stderr)
+if j.returncode == 0 and os.path.exists(outfile_path):
+    st.header("Avatar")
+    st.markdown("""
+        <style>
+        video {
+            max-height: 520px !important;   /* reduce video height */
+            width: auto !important;          /* keep aspect ratio */
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        </style>
+    """, unsafe_allow_html=True)
+    st.video(outfile_path)
+else:
+    st.error("Wav2Lip failed — see error logs below.")
+    st.text(j.stderr)
 
 
 
