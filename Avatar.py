@@ -214,13 +214,12 @@ elif page == "🚀Avatar":
                 }
                 </style>
                 """, unsafe_allow_html=True)
-
-            # Now display the video
             st.video("outputs/talking.mp4")
 
         else:
             st.error("Wav2Lip failed — see error logs below.")
             st.text(j.stderr)
+
 
 
 
