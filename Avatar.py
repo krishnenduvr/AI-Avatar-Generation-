@@ -6,7 +6,6 @@ from gtts import gTTS
 import tempfile
 import os
 import subprocess
-import gdown
 import sys
 from PIL import Image
 
@@ -218,6 +217,7 @@ elif page == "🚀Avatar":
         else:
             st.error("Wav2Lip failed — see error logs below.")
             st.text(j.stderr)
+
 
 
 
